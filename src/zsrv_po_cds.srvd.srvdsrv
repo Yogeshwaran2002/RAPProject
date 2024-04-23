@@ -1,0 +1,5 @@
+@EndUserText.label: 'Purchase Order Service Definition'
+define service ZSRV_PO_CDS {
+  expose ZI_PO_CDS;
+  expose ZI_PO_ITEM_CDS;
+}
