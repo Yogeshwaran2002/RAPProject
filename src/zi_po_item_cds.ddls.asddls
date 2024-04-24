@@ -59,6 +59,7 @@ define view entity ZI_PO_ITEM_CDS
       created_at            as CreatedAt,
       created_by            as CreatedBy,
       updated_on            as UpdatedOn,
+      @Semantics.systemDateTime.localInstanceLastChangedAt: true
       updated_at            as UpdatedAt,
       updated_by            as UpdatedBy,
       created_by_source     as CreatedBySource,

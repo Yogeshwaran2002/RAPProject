@@ -1,0 +1,121 @@
+managed; //implementation in class zbp_i_po_cds unique;
+strict ( 2 );
+
+define behavior for ZI_PO_CDS //alias <alias_name>
+implementation in class zcl_bp_po_cds unique
+persistent table zmvn_po_crt_db
+lock master
+authorization master ( instance )
+etag master UpdatedAt
+early numbering
+{
+field ( readonly ) Guid16;
+  create;
+  update;
+  delete;
+  association _PoItem { create; }
+  mapping for zmvn_po_crt_db
+    {
+      Guid16              = guid16;
+      RctPoNo             = rct_po_no;
+      SapPoNo             = sap_po_no;
+      CustPoNo            = cust_po_no;
+      ProjectCode         = project_code;
+      ProjectName         = project_name;
+      CustomerCode        = customer_code;
+      CustomerName        = customer_name;
+      PoDate              = po_date;
+      PoQty               = po_qty;
+      PoUom               = po_uom;
+      QuotationNo         = quotation_no;
+      ApprovedQuotationNo = approved_quotation_no;
+      ValidFrom           = valid_from;
+      ValidTo             = valid_to;
+      ExtendedValidTo     = extended_valid_to;
+      Plant               = plant;
+      PoBlock             = po_block;
+      Price               = price;
+      currencyCode        = currency_code;
+      IncoTerm            = inco_term;
+      DocRefNo            = doc_ref_no;
+      MixCode             = mix_code;
+      MobileFlag          = mobile_flag;
+      Inquiry             = inquiry;
+      InquiryStatus       = inquiry_status;
+      PaymentTerm         = payment_term;
+      Expired             = expired;
+      Zpr6Flag            = zpr6_flag;
+      Zfo1Flag            = zfo1_flag;
+      Zfo2Flag            = zfo2_flag;
+      Remarks             = remarks;
+      CreatedOn           = created_on;
+      CreatedAt           = created_at;
+      CreatedBy           = created_by;
+      UpdatedOn           = updated_on;
+      UpdatedAt           = updated_at;
+      UpdatedBy           = updated_by;
+      CreatedBySource     = created_by_source;
+      UpdatedBySource     = updated_by_source;
+    }
+}
+
+define behavior for ZI_PO_ITEM_CDS //alias <alias_name>
+implementation in class zcl_bp_po_item_cds unique
+persistent table zmvn_po_item_db
+lock dependent by _PoHeader
+authorization dependent by _PoHeader
+etag master UpdatedAt
+{
+  update;
+  delete;
+  field ( readonly ) Guid16;
+  association _PoHeader;
+  mapping for zmvn_po_item_db
+    {
+      Guid16              = guid16;
+      LineItemNo          = line_item_no;
+      RctPoNo             = rct_po_no;
+      SapPoNo             = sap_po_no;
+      CustPoNo            = cust_po_no;
+      ProjectCode         = project_code;
+      FinalisedMixDesign  = finalised_mix_design;
+      ProposedMixDesign   = proposed_mix_design;
+      PoQty               = po_qty;
+      ExtendedPoQty       = extended_po_qty;
+      Grade               = grade;
+      Expired             = expired;
+      ExpiredDate         = expired_date;
+      MixType             = mix_type;
+      ShipType            = ship_type;
+      MatFrieghtGrp       = mat_frieght_grp;
+      CustPoDate          = cust_po_date;
+      CustPoCopy          = cust_po_copy;
+      ApprovedQuotationNo = approved_quotation_no;
+      Inquiry             = inquiry;
+      PoPrice             = po_price;
+      currencyCode        = currency_code;
+      PoPriceQty          = po_price_qty;
+      PoPriceUom          = po_price_uom;
+      PoCurr              = po_curr;
+      AllPlant            = all_plant;
+      Plant               = plant;
+      Remarks             = remarks;
+      HeightRangeFrom     = height_range_from;
+      HeightRangeTo       = height_range_to;
+      HeightRangeUom      = height_range_uom;
+      ValidFrom           = valid_from;
+      ValidTo             = valid_to;
+      ExtendedValidTo     = extended_valid_to;
+      Zpr6Price           = zpr6_price;
+      Zfo1Price           = zfo1_price;
+      Zfo2Price           = zfo2_price;
+      CreatedOn           = created_on;
+      CreatedAt           = created_at;
+      CreatedBy           = created_by;
+      UpdatedOn           = updated_on;
+      UpdatedAt           = updated_at;
+      UpdatedBy           = updated_by;
+      CreatedBySource     = created_by_source;
+      UpdatedBySource     = updated_by_source;
+    }
+}
