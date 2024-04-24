@@ -6,7 +6,9 @@
 "ZMVN_PO_ITEM_DB"
 ],
 "ASSOCIATED":
-[],
+[
+"ZI_PO_CDS"
+],
 "BASE":
 [],
 "ANNO_REF":

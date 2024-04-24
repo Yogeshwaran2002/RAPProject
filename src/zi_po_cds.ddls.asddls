@@ -11,10 +11,10 @@
     typeName: 'Purchase Order',
     typeNamePlural: 'Purchse Order List'
 }
-
-define view entity ZI_PO_CDS
+@Search.searchable: true
+define root view entity ZI_PO_CDS
   as select from zmvn_po_crt_db as _PoHeader
-  association [1..*] to ZI_PO_ITEM_CDS as _PoItem on $projection.Guid16 = _PoItem.Guid16
+  composition [1..*] of ZI_PO_ITEM_CDS as _PoItem
 {
       @UI.facet: [{
       id: 'PODetail',
@@ -33,19 +33,22 @@ define view entity ZI_PO_CDS
       }]
   key guid16                as Guid16,
       @UI.lineItem: [{ position: 1 , label:'RCT PO No' }]
-      @UI.selectionField: [{position: 1}]
+      @Search.defaultSearchElement: true
+      @Search.fuzzinessThreshold: 0.5
       @UI.identification: [{ position: 1 , label:'RCT PO No' }]
       rct_po_no             as RctPoNo,
       @UI.lineItem: [{ position: 2 , label:'SAP PO No'}]
-      @UI.selectionField: [{position: 2}]
+      @Search.defaultSearchElement: true
+      @Search.fuzzinessThreshold: 0.5
       @UI.identification: [{ position: 2 , label:'SAP PO No'}]
       sap_po_no             as SapPoNo,
       @UI.lineItem: [{ position: 3 , label:'Customer PO No'}]
-      @UI.selectionField: [{position: 3}]
+      @Search.defaultSearchElement: true
+      @Search.fuzzinessThreshold: 0.5
       @UI.identification: [{ position: 3 , label:'Customer PO No'}]
       cust_po_no            as CustPoNo,
       @UI.lineItem: [{ position: 4 , label:'Project Code'}]
-      @UI.selectionField: [{position: 4}]
+
       @UI.identification: [{ position: 4 , label:'Project Code'}]
       project_code          as ProjectCode,
       @UI.lineItem: [{ position: 5 , label:'Project Name'}]
@@ -65,15 +68,17 @@ define view entity ZI_PO_CDS
       po_uom                as PoUom,
       quotation_no          as QuotationNo,
       approved_quotation_no as ApprovedQuotationNo,
-      @UI.lineItem: [{ position: 8 , label:'Valid From'}]
-      @UI.selectionField: [{position: 5}]
-      @UI.identification: [{ position: 10 , label:'Valid From'}]
+      @UI.lineItem: [{ position: 8 }]
+      @UI.selectionField: [{position: 2}]
+      @UI.identification: [{ position: 10 }]
+      @EndUserText.label: 'Valid From'
       valid_from            as ValidFrom,
-      @UI.identification: [{ position: 11 , label:'Valid To'}]
+     // @UI.identification: [{ position: 11 , label:'Valid To'}]
       valid_to              as ValidTo,
-      @UI.lineItem: [{ position: 9 , label:'Valid To'}]
-      @UI.selectionField: [{position: 6 }]
-      @UI.identification: [{ position: 12 , label:'Valid To'}]
+      @UI.lineItem: [{ position: 9 }]
+      @UI.selectionField: [{position: 3 }]
+      @UI.identification: [{ position: 12 }]
+      @EndUserText.label: 'Valid To'
       extended_valid_to     as ExtendedValidTo,
       plant                 as Plant,
       po_block              as PoBlock,

@@ -9,6 +9,7 @@
 }
 define view entity ZI_PO_ITEM_CDS
   as select from zmvn_po_item_db
+  association to parent ZI_PO_CDS as _PoHeader on $projection.Guid16 = _PoHeader.Guid16
 {
   key guid16                as Guid16,
       @UI.lineItem: [{ position: 1 , label:'Line Item No' }]
@@ -99,5 +100,6 @@ define view entity ZI_PO_ITEM_CDS
       updated_at            as UpdatedAt,
       updated_by            as UpdatedBy,
       created_by_source     as CreatedBySource,
-      updated_by_source     as UpdatedBySource
+      updated_by_source     as UpdatedBySource,
+      _PoHeader
 }
