@@ -1,0 +1,5 @@
+@EndUserText.label: 'SO Service Definition'
+define service Zsrv_so_def {
+  expose zl_so_rmc;
+  expose zl_so_vbap;
+}
