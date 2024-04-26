@@ -9,7 +9,7 @@ authorization master ( instance )
 etag master UpdatedAt
 early numbering
 {
-field ( readonly ) Guid16;
+  field ( readonly ) Guid16;
   create;
   update;
   delete;
@@ -65,10 +65,11 @@ persistent table zmvn_po_item_db
 lock dependent by _PoHeader
 authorization dependent by _PoHeader
 etag master UpdatedAt
+early numbering
 {
   update;
   delete;
-  field ( readonly ) Guid16;
+  field ( readonly ) Guid16 , LineItemNo;
   association _PoHeader;
   mapping for zmvn_po_item_db
     {
