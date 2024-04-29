@@ -46,8 +46,10 @@ define root view entity ZI_PO_CDS
       zfo1_flag             as Zfo1Flag,
       zfo2_flag             as Zfo2Flag,
       remarks               as Remarks,
+      @Semantics.dateTime: true
       created_on            as CreatedOn,
       created_at            as CreatedAt,
+      @Semantics.user.createdBy: true
       created_by            as CreatedBy,
       updated_on            as UpdatedOn,
       @Semantics.systemDateTime.localInstanceLastChangedAt: true

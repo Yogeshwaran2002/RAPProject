@@ -9,7 +9,8 @@ authorization master ( instance )
 etag master UpdatedAt
 early numbering
 {
-  field ( readonly ) Guid16;
+  field ( readonly ) Guid16, CreatedOn, CreatedAt, CreatedBy;
+  field ( mandatory ) SapPoNo, ProjectCode, ValidFrom, ValidTo, ExtendedValidTo;
   create;
   update;
   delete;
@@ -69,7 +70,8 @@ early numbering
 {
   update;
   delete;
-  field ( readonly ) Guid16 , LineItemNo;
+  field ( readonly ) Guid16, LineItemNo, CreatedOn, CreatedAt, CreatedBy;
+  field ( mandatory ) SapPoNo, ProjectCode, FinalisedMixDesign, Plant, PoQty, ShipType, PoPrice, ExtendedPoQty, ValidFrom, ValidTo, ExtendedValidTo;
   association _PoHeader;
   mapping for zmvn_po_item_db
     {

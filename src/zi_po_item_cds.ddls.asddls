@@ -55,8 +55,10 @@ define view entity ZI_PO_ITEM_CDS
       zfo1_price            as Zfo1Price,
       @Semantics.amount.currencyCode : 'currencyCode'
       zfo2_price            as Zfo2Price,
+      @Semantics.dateTime: true
       created_on            as CreatedOn,
       created_at            as CreatedAt,
+      @Semantics.user.createdBy: true
       created_by            as CreatedBy,
       updated_on            as UpdatedOn,
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
